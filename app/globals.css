@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-white text-text antialiased;
+  font-feature-settings: "liga" 1, "kern" 1;
+}
+
+section {
+  scroll-margin-top: 96px;
+}
+
+.container-pad {
+  @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full bg-success px-6 py-3 text-base font-semibold text-white shadow-soft transition hover:opacity-90;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-full border border-blue/30 bg-white px-6 py-3 text-base font-semibold text-navy shadow-soft transition hover:border-blue/60;
+}
+
+.section-title {
+  @apply text-3xl font-bold text-navy sm:text-4xl;
+}
+
+.section-subtitle {
+  @apply mt-4 text-base text-text/80 sm:text-lg;
+}
