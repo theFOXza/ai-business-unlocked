@@ -1,57 +1,66 @@
-import Image from 'next/image';
-
 export default function HostBios() {
   return (
-    <section className="py-16">
-      <div className="container-pad">
-        <h2 className="section-title">Meet Your Hosts</h2>
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-blue/10 bg-white p-6 shadow-soft">
-            <div className="flex items-center gap-4">
-              <Image
-                src="/pj-headshot.jpg"
-                alt="PeterJohn Fox"
-                width={96}
-                height={96}
-                className="rounded-full object-cover"
-              />
-              <div>
-                <p className="text-lg font-semibold text-navy">PETERJOHN FOX</p>
-                <p className="text-sm text-text/70">AI-first business builder</p>
-              </div>
+    <section className="section section-dark" id="hosts">
+      <div className="container">
+        <div className="section-label reveal">Your Hosts</div>
+        <h2 className="section-title reveal reveal-delay-1">
+          We&apos;re business owners,<br />not AI researchers.
+        </h2>
+        <p className="section-desc" style={{ maxWidth: '52ch', margin: '0 auto var(--space-12)' }}>
+          We use AI every single day to save time, make money, and stay ahead. We built this
+          workshop to share exactly what works.
+        </p>
+
+        <div className="hosts-grid">
+          <div className="host-card reveal">
+            <div className="host-avatar">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--color-primary)"
+                strokeWidth="1.5"
+                aria-hidden="true"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
             </div>
-            <p className="mt-4 text-base text-text/80">
-              PeterJohn has been using AI to build businesses, automate workflows,
-              and create content since before most people knew what ChatGPT was.
-              He runs multiple businesses and uses AI daily to save hours of work.
-            </p>
+            <div className="host-info">
+              <h3 className="host-name">PeterJohn Fox</h3>
+              <p className="host-role">AI-First Business Builder</p>
+              <p className="host-bio">
+                Has been using AI to build businesses, automate workflows, and create content at
+                scale. Brings the technical playbook translated into plain English.
+              </p>
+            </div>
           </div>
-          <div className="rounded-2xl border border-blue/10 bg-white p-6 shadow-soft">
-            <div className="flex items-center gap-4">
-              <Image
-                src="/james-headshot.jpg"
-                alt="James Parris"
-                width={96}
-                height={96}
-                className="rounded-full object-cover"
-              />
-              <div>
-                <p className="text-lg font-semibold text-navy">JAMES PARRIS</p>
-                <p className="text-sm text-text/70">Local business operator</p>
-              </div>
+          <div className="host-card reveal reveal-delay-1">
+            <div className="host-avatar">
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--color-primary)"
+                strokeWidth="1.5"
+                aria-hidden="true"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
             </div>
-            <p className="mt-4 text-base text-text/80">
-              James is a local business owner and entrepreneur who's been in the
-              trenches — running a deli, managing teams, and building businesses
-              from scratch. He knows what small business owners actually need
-              because he IS one.
-            </p>
+            <div className="host-info">
+              <h3 className="host-name">James Parris</h3>
+              <p className="host-role">Local Business Operator</p>
+              <p className="host-bio">
+                Has been running a deli and managing local businesses as an entrepreneur. Brings
+                the real-world operator&apos;s lens — what actually works on the ground.
+              </p>
+            </div>
           </div>
         </div>
-        <p className="mt-8 text-base font-semibold text-navy">
-          We're not AI researchers. We're business owners who use AI every day
-          to save time, make money, and work smarter. That's what we'll teach you.
-        </p>
       </div>
     </section>
   );

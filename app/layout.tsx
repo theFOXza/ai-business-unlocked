@@ -1,27 +1,15 @@
 import type { Metadata } from 'next';
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
-
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-jakarta',
-});
-
 export const metadata: Metadata = {
-  title: 'AI for Business Unlocked — Hands-On AI Workshop | Gainesville, FL',
+  title: 'AI for Business Unlocked — April 25, 2026 · Gainesville, FL',
   description:
-    'Learn to use AI for your business in one day. Hands-on workshop for local business owners. April 25, 2026 in Gainesville, FL. Limited to 25 seats.',
+    'A one-day hands-on workshop where local business owners build real AI tools for their business. April 25, 2026 · Best Western Gateway Grand, Gainesville, FL. Only 25 seats.',
   openGraph: {
-    title: 'AI for Business Unlocked',
+    title: 'AI for Business Unlocked — April 25, 2026 · Gainesville, FL',
     description:
-      'One-day hands-on AI workshop for business owners. Build real tools for YOUR business.',
-    images: ['/og-image.jpg'],
-    url: 'https://aibusinessunlock.com',
+      'Stop guessing. Start using AI to grow your business. Join 20 local business owners for a hands-on workshop.',
+    type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
@@ -35,7 +23,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${jakarta.variable} font-sans`}>{children}</body>
+      <head>
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&f[]=satoshi@400,500,700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }

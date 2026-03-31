@@ -1,27 +1,76 @@
 const outcomes = [
-  '3 AI-generated marketing assets ready to post TODAY',
-  'A repeatable workflow to create a week of content in 10 minutes',
-  'Customer service scripts that handle FAQs without hiring anyone',
-  'A competitor analysis done in minutes (not days)',
-  'Your personal AI action plan for the next 30 days',
-  '30 days FREE access to the AI Business Lab community ($97/mo value)',
+  {
+    text: (
+      <>
+        <strong>3 AI-generated marketing assets</strong> ready to post today
+      </>
+    ),
+  },
+  {
+    text: (
+      <>
+        A <strong>repeatable workflow</strong> to create a week of content in 10 minutes
+      </>
+    ),
+  },
+  {
+    text: (
+      <>
+        <strong>Customer service scripts</strong> that handle FAQs without hiring anyone
+      </>
+    ),
+  },
+  {
+    text: (
+      <>
+        A <strong>competitor analysis</strong> done in minutes, not days
+      </>
+    ),
+  },
+  {
+    text: (
+      <>
+        Your <strong>personal AI action plan</strong> for the next 30 days
+      </>
+    ),
+  },
+  {
+    text: (
+      <>
+        <strong>30 days FREE access</strong> to the AI Business Lab community{' '}
+        <span className="value-tag">$97/mo value</span>
+      </>
+    ),
+  },
 ];
 
 export default function WhatYoullLearn() {
   return (
-    <section className="py-16 bg-blue/5">
-      <div className="container-pad">
-        <h2 className="section-title">What You'll Walk Out With</h2>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {outcomes.map((item) => (
-            <div key={item} className="rounded-2xl border border-blue/10 bg-white p-5 shadow-soft">
-              <p className="text-base font-semibold text-navy">✅ {item}</p>
+    <section className="section" id="outcomes">
+      <div className="container">
+        <div className="section-label reveal">What You'll Walk Out With</div>
+        <h2 className="section-title reveal reveal-delay-1">
+          You won&apos;t just <em>learn</em> about AI.<br />You&apos;ll <em>build</em> with it.
+        </h2>
+        <p className="section-desc reveal reveal-delay-2">
+          Every outcome below is something you&apos;ll create at the workshop — not homework for later.
+        </p>
+
+        <div className="outcomes-grid">
+          {outcomes.map((item, index) => (
+            <div
+              key={index}
+              className={`outcome-item reveal${index % 3 === 1 ? ' reveal-delay-1' : ''}`}
+            >
+              <div className="outcome-check" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </div>
+              <div>{item.text}</div>
             </div>
           ))}
         </div>
-        <p className="mt-8 text-base font-semibold text-navy">
-          You won't just learn about AI. You'll BUILD with it.
-        </p>
       </div>
     </section>
   );

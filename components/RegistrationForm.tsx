@@ -4,24 +4,21 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ticketPrice } from '@/lib/site';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Full name is required.'),
   email: z.string().email('Enter a valid email.'),
-  phone: z.string().min(7, 'Enter a valid phone number.'),
-  businessName: z.string().min(2, 'Business name is required.'),
-  industry: z.string().min(1, 'Select an industry.'),
-  painPoint: z.string().min(5, 'Share your biggest pain point.'),
-  aiFamiliarity: z.string().min(1, 'Select your AI familiarity.'),
+  phone: z.string().optional(),
+  businessName: z.string().optional(),
+  industry: z.string().optional(),
+  painPoint: z.string().optional(),
+  aiFamiliarity: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
 
-interface RegistrationFormProps {
-  priceLabel: string;
-}
-
-export default function RegistrationForm({ priceLabel }: RegistrationFormProps) {
+export default function RegistrationForm() {
   const {
     register,
     handleSubmit,
@@ -55,118 +52,150 @@ export default function RegistrationForm({ priceLabel }: RegistrationFormProps) 
   };
 
   return (
-    <section id="register" className="py-16">
-      <div className="container-pad">
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr]">
-          <div>
-            <h2 className="section-title">Register for the Workshop</h2>
-            <p className="section-subtitle">
-              Complete the intake form below, then continue to secure Stripe checkout.
-            </p>
-            <div className="mt-6 rounded-2xl border border-blue/10 bg-blue/5 p-6 text-sm text-text/80">
-              <p className="font-semibold text-navy">What happens next:</p>
-              <ul className="mt-3 space-y-2">
-                <li>• You'll be redirected to secure Stripe checkout.</li>
-                <li>• Payment confirms your seat instantly.</li>
-                <li>• You'll receive a confirmation email from Stripe.</li>
-              </ul>
+    <section className="section section-dark" id="register">
+      <div className="container container-narrow">
+        <div className="section-label reveal">Secure Your Spot</div>
+        <h2 className="section-title reveal reveal-delay-1">
+          Only 25 seats available.<br />When they&apos;re gone, they&apos;re gone.
+        </h2>
+        <p className="section-desc reveal reveal-delay-2">
+          Complete the form below, then continue to secure Stripe checkout. Your seat is confirmed
+          the moment payment goes through.
+        </p>
+
+        <div className="urgency-bar reveal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 8v4M12 16h.01" />
+          </svg>
+          Early bird pricing of $197 ends April 12, 2026. Regular price: $297.
+        </div>
+
+        <form className="reg-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="full-name">
+                Full Name <span className="req" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="full-name"
+                placeholder="Jane Smith"
+                autoComplete="name"
+                {...register('name')}
+                required
+              />
+              {errors.name && <p className="form-error">{errors.name.message}</p>}
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">
+                Email <span className="req" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                placeholder="jane@yourbusiness.com"
+                autoComplete="email"
+                {...register('email')}
+                required
+              />
+              {errors.email && <p className="form-error">{errors.email.message}</p>}
             </div>
           </div>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="rounded-2xl border border-blue/10 bg-white p-6 shadow-soft"
-          >
-            <div className="grid gap-4">
-              <div>
-                <label className="text-sm font-semibold text-navy">Full name</label>
-                <input
-                  {...register('name')}
-                  className="mt-2 w-full rounded-xl border border-blue/20 px-4 py-3 text-base"
-                  placeholder="Full name"
-                />
-                {errors.name && <p className="mt-1 text-sm text-urgent">{errors.name.message}</p>}
-              </div>
-              <div>
-                <label className="text-sm font-semibold text-navy">Email</label>
-                <input
-                  type="email"
-                  {...register('email')}
-                  className="mt-2 w-full rounded-xl border border-blue/20 px-4 py-3 text-base"
-                  placeholder="Email address"
-                />
-                {errors.email && <p className="mt-1 text-sm text-urgent">{errors.email.message}</p>}
-              </div>
-              <div>
-                <label className="text-sm font-semibold text-navy">Phone number</label>
-                <input
-                  type="tel"
-                  {...register('phone')}
-                  className="mt-2 w-full rounded-xl border border-blue/20 px-4 py-3 text-base"
-                  placeholder="Phone number"
-                />
-                {errors.phone && <p className="mt-1 text-sm text-urgent">{errors.phone.message}</p>}
-              </div>
-              <div>
-                <label className="text-sm font-semibold text-navy">Business name</label>
-                <input
-                  {...register('businessName')}
-                  className="mt-2 w-full rounded-xl border border-blue/20 px-4 py-3 text-base"
-                  placeholder="Business name"
-                />
-                {errors.businessName && (
-                  <p className="mt-1 text-sm text-urgent">{errors.businessName.message}</p>
-                )}
-              </div>
-              <div>
-                <label className="text-sm font-semibold text-navy">Industry</label>
-                <select
-                  {...register('industry')}
-                  className="mt-2 w-full rounded-xl border border-blue/20 bg-white px-4 py-3 text-base"
-                >
-                  <option value="">Select industry</option>
-                  <option>Restaurant</option>
-                  <option>Retail</option>
-                  <option>Services</option>
-                  <option>Health/Wellness</option>
-                  <option>Real Estate</option>
-                  <option>Construction</option>
-                  <option>Other</option>
-                </select>
-                {errors.industry && <p className="mt-1 text-sm text-urgent">{errors.industry.message}</p>}
-              </div>
-              <div>
-                <label className="text-sm font-semibold text-navy">Biggest pain point</label>
-                <textarea
-                  {...register('painPoint')}
-                  className="mt-2 w-full rounded-xl border border-blue/20 px-4 py-3 text-base"
-                  rows={3}
-                  placeholder="What's your biggest pain point right now?"
-                />
-                {errors.painPoint && <p className="mt-1 text-sm text-urgent">{errors.painPoint.message}</p>}
-              </div>
-              <div>
-                <label className="text-sm font-semibold text-navy">AI familiarity</label>
-                <select
-                  {...register('aiFamiliarity')}
-                  className="mt-2 w-full rounded-xl border border-blue/20 bg-white px-4 py-3 text-base"
-                >
-                  <option value="">Select familiarity</option>
-                  <option>Never used it</option>
-                  <option>Tried it once</option>
-                  <option>Use it sometimes</option>
-                  <option>Use it regularly</option>
-                </select>
-                {errors.aiFamiliarity && (
-                  <p className="mt-1 text-sm text-urgent">{errors.aiFamiliarity.message}</p>
-                )}
-              </div>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                placeholder="(352) 555-0100"
+                autoComplete="tel"
+                {...register('phone')}
+              />
             </div>
-            {error && <p className="mt-4 text-sm text-urgent">{error}</p>}
-            <button type="submit" className="btn-primary mt-6 w-full text-lg" disabled={isSubmitting}>
-              {isSubmitting ? 'Redirecting to Stripe…' : `Continue to Payment — ${priceLabel}`}
-            </button>
-          </form>
-        </div>
+            <div className="form-group">
+              <label htmlFor="business-name">Business Name</label>
+              <input
+                type="text"
+                id="business-name"
+                placeholder="Acme Local LLC"
+                autoComplete="organization"
+                {...register('businessName')}
+              />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="industry">Industry</label>
+              <select id="industry" {...register('industry')}>
+                <option value="">Select your industry…</option>
+                <option>Restaurant / Food & Beverage</option>
+                <option>Retail</option>
+                <option>Health & Wellness</option>
+                <option>Real Estate</option>
+                <option>Professional Services</option>
+                <option>Trades / Home Services</option>
+                <option>Marketing / Creative</option>
+                <option>Education</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <label htmlFor="ai-familiarity">AI Familiarity</label>
+              <select id="ai-familiarity" {...register('aiFamiliarity')}>
+                <option value="">Select level…</option>
+                <option>Complete beginner</option>
+                <option>Tried it once or twice</option>
+                <option>Use it occasionally</option>
+                <option>Use it regularly</option>
+              </select>
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="pain-point">Biggest pain point in your business right now</label>
+            <textarea
+              id="pain-point"
+              rows={3}
+              placeholder="e.g. Not enough time to create content, struggling to follow up with leads…"
+              {...register('painPoint')}
+            ></textarea>
+          </div>
+
+          <div className="form-steps">
+            <div className="step-item step-active">
+              <div className="step-num">1</div>
+              <span>Fill out this form</span>
+            </div>
+            <div className="step-arrow" aria-hidden="true">→</div>
+            <div className="step-item">
+              <div className="step-num">2</div>
+              <span>Secure Stripe checkout</span>
+            </div>
+            <div className="step-arrow" aria-hidden="true">→</div>
+            <div className="step-item">
+              <div className="step-num">3</div>
+              <span>Confirmation email</span>
+            </div>
+          </div>
+
+          {error && <p className="form-error">{error}</p>}
+
+          <button type="submit" className="btn btn-primary btn-xl btn-full" disabled={isSubmitting}>
+            {isSubmitting ? 'Redirecting to checkout…' : `Continue to Checkout — $${ticketPrice}`}
+            {!isSubmitting && (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            )}
+          </button>
+          <p className="form-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            Secured by Stripe. Your payment confirms your seat instantly.
+          </p>
+        </form>
       </div>
     </section>
   );

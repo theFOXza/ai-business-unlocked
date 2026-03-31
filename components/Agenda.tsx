@@ -1,36 +1,94 @@
-const agendaItems = [
-  { time: '8:30 AM', label: '☕ Registration + Coffee & Setup' },
-  { time: '9:00 AM', label: '🎤 Welcome + "Why AI, Why Now"' },
-  { time: '9:20 AM', label: '🧠 Module 1: AI Foundations + Your First Win' },
-  { time: '10:30 AM', label: '☕ Break' },
-  { time: '10:45 AM', label: '🔧 Module 2: Build Real Business Assets' },
-  { time: '12:00 PM', label: '🥪 Lunch Break (optional bonus AI demo for those who stay)' },
-  { time: '1:00 PM', label: '⚡ Module 3: Workflows & Automation' },
-  { time: '2:15 PM', label: '☕ Break' },
-  { time: '2:30 PM', label: '🎯 Module 4: 1-on-1 Implementation for YOUR Business' },
-  { time: '3:30 PM', label: '🚀 Community Launch + Your 7-Day AI Challenge' },
-  { time: '4:00 PM', label: '🎬 Closing + Group Photo' },
+const scheduleItems = [
+  {
+    time: '8:30 AM',
+    title: 'Registration + Coffee & Setup',
+    type: 'Arrival',
+    variant: 'break',
+  },
+  { time: '9:00 AM', title: 'Welcome' },
+  {
+    time: '9:20 AM',
+    title: 'Module 1: AI Foundations + Your First Win',
+    type: 'Workshop',
+    variant: 'module',
+  },
+  { time: '10:30 AM', title: 'Break', type: '15 min', variant: 'break' },
+  {
+    time: '10:45 AM',
+    title: 'Module 2: Build Real Business Assets',
+    type: 'Workshop',
+    variant: 'module',
+  },
+  {
+    time: '12:00 PM',
+    title: 'Lunch Break',
+    type: '+ Optional bonus AI demo',
+    variant: 'break',
+  },
+  {
+    time: '1:00 PM',
+    title: 'Module 3: Workflows & Automation',
+    type: 'Workshop',
+    variant: 'module',
+  },
+  { time: '2:15 PM', title: 'Break', type: '15 min', variant: 'break' },
+  {
+    time: '2:30 PM',
+    title: 'Module 4: 1-on-1 Implementation for YOUR Business',
+    type: 'Featured',
+    variant: 'featured',
+  },
+  {
+    time: '3:30 PM',
+    title: 'Community Launch + Your 7-Day AI Challenge',
+    type: 'Workshop',
+    variant: 'module',
+  },
+  { time: '4:00 PM', title: 'Closing + Group Photo' },
 ];
 
 export default function Agenda() {
   return (
-    <section className="py-16">
-      <div className="container-pad">
-        <h2 className="section-title">Your Day, Hour by Hour</h2>
-        <div className="mt-8 grid gap-4">
-          {agendaItems.map((item) => (
-            <div
-              key={item.time}
-              className="flex flex-col gap-2 rounded-2xl border border-blue/10 bg-white p-5 shadow-soft sm:flex-row sm:items-center sm:justify-between"
-            >
-              <span className="text-lg font-semibold text-navy">{item.time}</span>
-              <span className="text-base text-text/80">{item.label}</span>
-            </div>
-          ))}
-        </div>
-        <p className="mt-6 text-base font-semibold text-navy">
-          Every session is hands-on. You'll have something working before lunch.
+    <section className="section section-offset" id="schedule">
+      <div className="container">
+        <div className="section-label reveal">The Day Itself</div>
+        <h2 className="section-title reveal reveal-delay-1">Your day, hour by hour</h2>
+        <p className="section-desc reveal reveal-delay-2">
+          Every session is hands-on. You&apos;ll have something working before lunch.
         </p>
+
+        <div className="schedule-timeline">
+          {scheduleItems.map((item, index) => {
+            const isModule = item.variant === 'module' || item.variant === 'featured';
+            return (
+              <div
+                key={`${item.time}-${index}`}
+                className={`schedule-item${isModule ? ' schedule-item-module' : ''} reveal`}
+              >
+                <div className="schedule-time">{item.time}</div>
+                <div className="schedule-dot" aria-hidden="true">
+                  <div className={`dot-inner${isModule ? ' dot-active' : ''}`}></div>
+                </div>
+                <div className="schedule-content">
+                  <strong>{item.title}</strong>
+                  {item.type && (
+                    <span
+                      className={`schedule-type${
+                        item.variant === 'break'
+                          ? ' schedule-type-break'
+                          : item.variant === 'featured'
+                            ? ' schedule-type-featured'
+                            : ''
+                      }`}
+                    >
+                      {item.type}
+                    </span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );
