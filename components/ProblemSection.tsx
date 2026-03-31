@@ -6,8 +6,8 @@ export default function ProblemSection() {
       <div className="container">
         <div className="section-label reveal">Sound Familiar?</div>
         <h2 className="section-title reveal reveal-delay-1">
-          Your competitors are already using AI.<br />
-          <em>Are you?</em>
+          Your competitors are using AI to save time, cut costs, and grow.<br />
+          <em>Is your business?</em>
         </h2>
 
         <div className="pain-grid">
