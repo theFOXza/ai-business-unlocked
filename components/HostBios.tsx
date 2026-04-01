@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function HostBios() {
   return (
     <section className="section section-dark" id="hosts">
@@ -14,18 +16,14 @@ export default function HostBios() {
         <div className="hosts-grid">
           <div className="host-card reveal">
             <div className="host-avatar">
-              <svg
-                width="48"
-                height="48"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="var(--color-primary)"
-                strokeWidth="1.5"
-                aria-hidden="true"
-              >
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
+              <Image
+                src="/pj-headshot.png"
+                alt="PeterJohn Fox"
+                width={120}
+                height={120}
+                className="host-photo"
+                style={{ borderRadius: '50%', objectFit: 'cover' }}
+              />
             </div>
             <div className="host-info">
               <h3 className="host-name">PeterJohn Fox</h3>
