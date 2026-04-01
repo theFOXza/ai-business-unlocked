@@ -21,7 +21,7 @@ export default function ThankYouPage() {
             <span className="value-item-name">3. 💻 Make sure you have a laptop + free ChatGPT account ready</span>
           </div>
           <div className="value-row">
-            <span className="value-item-name">4. 📍 Best Western Gateway Grand, Gainesville, FL — 8:30 AM</span>
+            <span className="value-item-name">4. 📍 <a href="https://maps.google.com/?q=Best+Western+Gateway+Grand+4200+NW+97th+Blvd+Gainesville+FL+32606" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-primary)', textDecoration: 'underline' }}>Best Western Gateway Grand, 4200 NW 97th Blvd, Gainesville, FL 32606</a> — 8:30 AM</span>
           </div>
         </div>
         <p className="section-desc">Questions? Email {contactEmail}</p>

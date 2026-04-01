@@ -68,7 +68,7 @@ export default function Hero() {
               <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <span>Best Western Gateway Grand, Gainesville, FL</span>
+            <a href="https://maps.google.com/?q=Best+Western+Gateway+Grand+4200+NW+97th+Blvd+Gainesville+FL+32606" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', textUnderlineOffset: '2px' }}>Best Western Gateway Grand, Gainesville, FL</a>
           </div>
           <div className="meta-divider" aria-hidden="true"></div>
           <div className="meta-item">
