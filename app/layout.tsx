@@ -5,6 +5,14 @@ export const metadata: Metadata = {
   title: 'AI for Business Unlocked — April 25, 2026 · Gainesville, FL',
   description:
     'A one-day hands-on workshop where local business owners build real AI tools for their business. April 25, 2026 · Best Western Gateway Grand, Gainesville, FL. Only 25 seats.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     title: 'AI for Business Unlocked — April 25, 2026 · Gainesville, FL',
     description:
