@@ -19,10 +19,10 @@ export default function HostBios() {
               <Image
                 src="/pj-headshot.png"
                 alt="PeterJohn Fox"
-                width={120}
-                height={120}
+                width={160}
+                height={160}
                 className="host-photo"
-                style={{ borderRadius: '50%', objectFit: 'cover' }}
+                style={{ borderRadius: '50%', objectFit: 'cover', width: '100%', height: '100%' }}
               />
             </div>
             <div className="host-info">
@@ -37,8 +37,8 @@ export default function HostBios() {
           <div className="host-card reveal reveal-delay-1">
             <div className="host-avatar">
               <svg
-                width="48"
-                height="48"
+                width="72"
+                height="72"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="var(--color-primary)"

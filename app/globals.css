@@ -866,14 +866,15 @@ li {
 
 .host-avatar {
   flex-shrink: 0;
-  width: 72px;
-  height: 72px;
-  border-radius: var(--radius-xl);
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
   background: color-mix(in oklab, var(--color-primary) 12%, var(--color-dark-surface));
-  border: 1px solid color-mix(in oklab, var(--color-primary) 30%, transparent);
+  border: 2px solid color-mix(in oklab, var(--color-primary) 30%, transparent);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .host-name {
