@@ -17,7 +17,7 @@ export default function HostBios() {
           <div className="host-card reveal">
             <div className="host-avatar">
               <Image
-                src="/pj-headshot.png"
+                src="/pj-headshot.webp"
                 alt="PeterJohn Fox"
                 width={160}
                 height={160}
