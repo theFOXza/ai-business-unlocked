@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { ticketPrice } from '@/lib/site';
 
 export default function Navbar() {
@@ -27,16 +26,7 @@ export default function Navbar() {
     <header className="header" id="header">
       <nav className="nav container">
         <Link href="#hero" className="logo" aria-label="AI for Business Unlocked home">
-          <Image
-            src="/logo.jpg"
-            alt="AI for Business Unlocked"
-            width={36}
-            height={36}
-            style={{ borderRadius: '6px' }}
-          />
-          <span className="logo-text">
-            AI for Business <strong>Unlocked</strong>
-          </span>
+          <img src="/logo.jpg" alt="AI for Business Unlocked" width={40} height={40} style={{ borderRadius: '6px' }} />
         </Link>
 
         <div className="nav-right">

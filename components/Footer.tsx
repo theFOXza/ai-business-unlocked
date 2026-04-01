@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { contactEmail } from '@/lib/site';
 
 export default function Footer() {
@@ -7,16 +6,7 @@ export default function Footer() {
       <div className="container footer-inner">
         <div className="footer-brand">
           <a href="#hero" className="logo" aria-label="AI for Business Unlocked">
-            <Image
-              src="/logo.jpg"
-              alt="AI for Business Unlocked"
-              width={32}
-              height={32}
-              style={{ borderRadius: '6px' }}
-            />
-            <span className="logo-text">
-              AI for Business <strong>Unlocked</strong>
-            </span>
+            <img src="/logo.jpg" alt="AI for Business Unlocked" width={36} height={36} style={{ borderRadius: '6px' }} />
           </a>
           <p className="footer-tagline">April 25, 2026 · Gainesville, FL</p>
         </div>
