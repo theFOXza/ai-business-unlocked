@@ -68,7 +68,7 @@ export default function RegistrationForm() {
             <circle cx="12" cy="12" r="10" />
             <path d="M12 8v4M12 16h.01" />
           </svg>
-          Early bird pricing of $197 ends April 12, 2026. Regular price: $297.
+          Early bird pricing of $197 for the first 10 seats. Regular price: $297.
         </div>
 
         <form className="reg-form" onSubmit={handleSubmit(onSubmit)} noValidate>

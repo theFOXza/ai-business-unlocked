@@ -172,6 +172,10 @@ li {
 .section-dark {
   background-color: var(--color-dark-bg);
   color: var(--color-dark-text);
+  --color-primary: #c4b5fd;
+  --color-primary-hover: #d8ccfe;
+  --color-primary-active: #b4a2fc;
+  --color-primary-soft: rgba(196, 181, 253, 0.12);
 }
 
 .section-offset {
@@ -802,7 +806,8 @@ li {
   color: var(--color-text);
   font-size: var(--text-base);
   text-decoration: line-through;
-  text-decoration-color: var(--color-border);
+  text-decoration-color: #ef4444;
+  text-decoration-thickness: 2px;
 }
 
 .value-your-price {

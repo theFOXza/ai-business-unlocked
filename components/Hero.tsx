@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="container hero-inner">
         <div className="event-badge reveal">
           <span className="badge-dot"></span>
-          <span>Friday, April 25, 2026 · Gainesville, FL</span>
+          <span>Saturday, April 25, 2026 · Gainesville, FL</span>
         </div>
 
         <h1 className="hero-headline reveal reveal-delay-1">
@@ -37,7 +37,7 @@ export default function Hero() {
               <rect x="3" y="4" width="18" height="18" rx="2" />
               <path d="M16 2v4M8 2v4M3 10h18" />
             </svg>
-            <span>Friday, April 25, 2026</span>
+            <span>Saturday, April 25, 2026</span>
           </div>
           <div className="meta-divider" aria-hidden="true"></div>
           <div className="meta-item">
@@ -114,7 +114,7 @@ export default function Hero() {
               <circle cx="12" cy="12" r="10" />
               <path d="M12 8v4M12 16h.01" />
             </svg>
-            Early bird pricing ends April 12 · Only 25 seats available
+            Early bird pricing for the first 10 seats · Only 25 seats available
           </p>
         </div>
       </div>
