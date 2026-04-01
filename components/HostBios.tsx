@@ -36,18 +36,14 @@ export default function HostBios() {
           </div>
           <div className="host-card reveal reveal-delay-1">
             <div className="host-avatar">
-              <svg
-                width="72"
-                height="72"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="var(--color-primary)"
-                strokeWidth="1.5"
-                aria-hidden="true"
-              >
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
+              <Image
+                src="/james-headshot.png"
+                alt="James Parris"
+                width={160}
+                height={160}
+                className="host-photo"
+                style={{ borderRadius: '50%', objectFit: 'cover', width: '100%', height: '100%' }}
+              />
             </div>
             <div className="host-info">
               <h3 className="host-name">James Parris</h3>
