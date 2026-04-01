@@ -5,18 +5,34 @@ export default function Hero() {
   return (
     <section className="hero" id="hero">
       <div className="hero-bg-grid" aria-hidden="true"></div>
-      <div className="container hero-inner">
-        <div className="event-badge reveal">
+      <div className="container hero-inner" style={{ alignItems: 'center', textAlign: 'center', maxWidth: '100%' }}>
+        <h1
+          className="reveal"
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(2.5rem, 6vw, 5rem)',
+            fontWeight: 900,
+            letterSpacing: '-0.03em',
+            lineHeight: 1.05,
+            color: 'var(--color-text)',
+            width: '100%',
+            marginBottom: 'var(--space-8)',
+          }}
+        >
+          AI for Business <span style={{ color: 'var(--color-primary)' }}>Unlocked</span>
+        </h1>
+
+        <div className="event-badge reveal reveal-delay-1">
           <span className="badge-dot"></span>
           <span>Saturday, April 25, 2026 · Gainesville, FL</span>
         </div>
 
-        <h1 className="hero-headline reveal reveal-delay-1">
+        <h2 className="hero-headline reveal reveal-delay-2" style={{ textAlign: 'left', alignSelf: 'flex-start' }}>
           Stop guessing.<br />
           <span className="headline-accent">Start using AI</span>
           <br />
           to grow your business.
-        </h1>
+        </h2>
 
         <p className="hero-sub reveal reveal-delay-2">
           Join 20 local business owners for a <strong>hands-on, one-day workshop</strong> where
