@@ -26,7 +26,7 @@ export default function Navbar() {
     <header className="header" id="header">
       <nav className="nav container">
         <Link href="#hero" className="logo" aria-label="AI for Business Unlocked home">
-          <img src="/logo.jpg" alt="AI for Business Unlocked" width={48} height={48} style={{ borderRadius: '6px' }} />
+          <img src="/logo.png" alt="AI for Business Unlocked" width={48} height={48} style={{ borderRadius: '6px' }} />
         </Link>
 
         <div className="nav-right">

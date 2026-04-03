@@ -6,6 +6,17 @@ export default function Hero() {
     <section className="hero" id="hero">
       <div className="hero-bg-grid" aria-hidden="true"></div>
       <div className="container hero-inner" style={{ alignItems: 'center', textAlign: 'center', maxWidth: '100%' }}>
+        <img
+          src="/logo.png"
+          alt="AI for Business Unlocked logo"
+          className="reveal"
+          style={{
+            width: 'clamp(80px, 15vw, 140px)',
+            height: 'auto',
+            marginBottom: 'var(--space-4)',
+          }}
+        />
+
         <h1
           className="reveal"
           style={{
