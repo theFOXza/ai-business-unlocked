@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="container footer-main">
         <div className="footer-brand-row">
           <a href="#hero" className="footer-logo-link" aria-label="Back to top">
-            <img src="/logo.png" alt="AI for Business Unlocked" width={32} height={32} />
+            <img src="/logo-footer.png" alt="AI for Business Unlocked" width={32} height={32} />
             <span className="footer-logo-text">AI for Business Unlocked</span>
           </a>
         </div>
