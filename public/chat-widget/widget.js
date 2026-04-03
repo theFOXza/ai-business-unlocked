@@ -26,8 +26,9 @@
     "#aib-chat-window{position:fixed;bottom:96px;right:24px;z-index:99998;width:370px;max-width:calc(100vw - 32px);height:540px;max-height:calc(100vh - 120px);background:#fff;border-radius:18px;box-shadow:0 8px 40px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(20px) scale(.97);pointer-events:none;transition:opacity .25s,transform .25s}",
     "#aib-chat-window.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all}",
     "#aib-chat-header{background:linear-gradient(135deg,#7C3AED,#4C1D95);padding:16px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0}",
-    "#aib-chat-header .aib-avatar{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}",
+    "#aib-chat-header .aib-avatar{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}",
     "#aib-chat-header .aib-avatar svg{width:22px;height:22px;fill:#fff}",
+    "#aib-chat-header .aib-avatar img{width:100%;height:100%;object-fit:cover}",
     "#aib-chat-header .aib-hinfo{flex:1;min-width:0}",
     "#aib-chat-header .aib-hname{color:#fff;font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}",
     "#aib-chat-header .aib-hstatus{color:rgba(255,255,255,.8);font-size:12px;margin-top:2px;display:flex;align-items:center;gap:5px}",
@@ -38,8 +39,9 @@
     ".aib-msg{display:flex;align-items:flex-end;gap:8px;max-width:85%}",
     ".aib-msg.bot{align-self:flex-start}",
     ".aib-msg.user{align-self:flex-end;flex-direction:row-reverse}",
-    ".aib-msg-avatar{width:28px;height:28px;border-radius:50%;background:#EDE9FE;display:flex;align-items:center;justify-content:center;flex-shrink:0}",
+    ".aib-msg-avatar{width:28px;height:28px;border-radius:50%;background:#EDE9FE;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}",
     ".aib-msg-avatar svg{width:15px;height:15px;fill:#7C3AED}",
+    ".aib-msg-avatar img{width:100%;height:100%;object-fit:cover}",
     ".aib-bubble{padding:10px 13px;border-radius:16px;font-size:14px;line-height:1.5;word-break:break-word}",
     ".bot .aib-bubble{background:#F3F4F6;color:#111827;border-bottom-left-radius:4px}",
     ".user .aib-bubble{background:linear-gradient(135deg,#7C3AED,#4C1D95);color:#fff;border-bottom-right-radius:4px}",
@@ -87,7 +89,7 @@
       // Header
       '<div id="aib-chat-header">',
         '<div class="aib-avatar">',
-          '<svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"/></svg>',
+          '<img src="/logo.png" alt="AI for Business Unlocked" />',
         '</div>',
         '<div class="aib-hinfo">',
           '<div class="aib-hname">AI for Business Unlocked</div>',
@@ -144,7 +146,7 @@
     if (isOpen && !greeted) {
       greeted = true;
       appendBot(
-        "Hi there! 👋 I'm here to help with any questions about the <strong>AI for Business Unlocked</strong> workshop on April 25th in Gainesville, FL.\n\nWhat would you like to know?"
+        "Hi there! 👋 I'm here to help with any questions about the **AI for Business Unlocked** workshop on April 25th in Gainesville, FL.\n\nWhat would you like to know?"
       );
     }
     if (isOpen) {
@@ -270,7 +272,7 @@
     var row = document.createElement("div");
     row.className = "aib-msg bot";
     row.innerHTML =
-      '<div class="aib-msg-avatar"><svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"/></svg></div>' +
+      '<div class="aib-msg-avatar"><img src="/logo.png" alt="AI" /></div>' +
       '<div class="aib-bubble">' + formatText(text) + '</div>';
     msgs.appendChild(row);
     scroll();
@@ -289,7 +291,7 @@
     var row = document.createElement("div");
     row.className = "aib-msg bot";
     row.innerHTML =
-      '<div class="aib-msg-avatar"><svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"/></svg></div>' +
+      '<div class="aib-msg-avatar"><img src="/logo.png" alt="AI" /></div>' +
       '<div class="aib-bubble aib-typing"><span></span><span></span><span></span></div>';
     msgs.appendChild(row);
     scroll();
