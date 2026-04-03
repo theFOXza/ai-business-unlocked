@@ -10,6 +10,8 @@ import FAQ from '@/components/FAQ';
 import RegistrationForm from '@/components/RegistrationForm';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
+import BackToTop from '@/components/BackToTop';
+import SupportChat from '@/components/SupportChat';
 import ScrollEffects from '@/components/ScrollEffects';
 
 export default function HomePage() {
@@ -29,6 +31,8 @@ export default function HomePage() {
         <FinalCTA />
       </main>
       <Footer />
+      <BackToTop />
+      <SupportChat />
       <ScrollEffects />
     </div>
   );
