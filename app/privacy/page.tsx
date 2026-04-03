@@ -26,7 +26,7 @@ export default function PrivacyPage() {
         <p>You may request access to, correction of, or deletion of your personal data at any time by contacting us.</p>
 
         <h2>Contact</h2>
-        <p>For privacy-related questions, email us at <a href="mailto:hello@aibusinessunlocked.com">hello@aibusinessunlocked.com</a>.</p>
+        <p>For privacy-related questions, email us at <a href="mailto:legal@aibusinessunlock.com">legal@aibusinessunlock.com</a>.</p>
       </div>
     </main>
   );
