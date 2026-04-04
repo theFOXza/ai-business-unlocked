@@ -11,6 +11,7 @@ export default function Footer() {
           </a>
         </div>
         <nav className="footer-legal" aria-label="Legal">
+          <Link href="/quiz">Take the AI Opportunity Assessment →</Link>
           <Link href="/privacy">Privacy Policy</Link>
           <Link href="/terms">Terms &amp; Conditions</Link>
           <Link href="/cookies">Cookies</Link>
