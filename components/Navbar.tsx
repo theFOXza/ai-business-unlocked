@@ -30,6 +30,13 @@ export default function Navbar() {
         </Link>
 
         <div className="nav-right">
+          <Link
+            href="/quiz"
+            className="btn btn-sm"
+            style={{ border: '1px solid var(--color-border)', color: 'var(--color-primary)' }}
+          >
+            Free Assessment
+          </Link>
           <Link href="#register" className="btn btn-primary btn-sm">
             Register Now — ${ticketPrice}
           </Link>
