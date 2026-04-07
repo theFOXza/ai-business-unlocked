@@ -85,9 +85,20 @@ export function QuizEmailTemplate({ result, snapshotUrl, siteUrl }: QuizEmailTem
               <p style={{ margin: 0 }}>{topArea?.firstStep}</p>
 
               <div style={{ marginTop: 24, padding: '16px 18px', backgroundColor: '#eef2ff', borderRadius: 14 }}>
-                <strong style={{ display: 'block', marginBottom: 6 }}>View your full snapshot online</strong>
-                <a href={snapshotUrl} style={{ color: '#3730a3', textDecoration: 'underline' }}>
-                  {snapshotUrl}
+                <strong style={{ display: 'block', marginBottom: 12 }}>View your full snapshot online</strong>
+                <a
+                  href={snapshotUrl}
+                  style={{
+                    display: 'inline-block',
+                    backgroundColor: '#3730a3',
+                    color: '#ffffff',
+                    padding: '12px 20px',
+                    borderRadius: 10,
+                    textDecoration: 'none',
+                    fontWeight: 700,
+                  }}
+                >
+                  View Your Full Snapshot →
                 </a>
               </div>
 

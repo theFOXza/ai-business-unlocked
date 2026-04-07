@@ -38,7 +38,7 @@ export default async function QuizSnapshotPage({
   if (!id && !tokenResult) {
     return (
       <div className="min-h-screen bg-[var(--color-bg)]">
-        <Navbar />
+        <Navbar homeHref="/" showQuizButton={false} registerHref="/#register" />
         <main className="section">
           <div className="container-narrow space-y-6">
             <h1 className="text-2xl font-semibold">Missing snapshot ID</h1>
@@ -60,7 +60,7 @@ export default async function QuizSnapshotPage({
   if (!result) {
     return (
       <div className="min-h-screen bg-[var(--color-bg)]">
-        <Navbar />
+        <Navbar homeHref="/" showQuizButton={false} registerHref="/#register" />
         <main className="section">
           <div className="container-narrow space-y-6">
             <h1 className="text-2xl font-semibold">Snapshot not found</h1>
@@ -84,7 +84,7 @@ export default async function QuizSnapshotPage({
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
-      <Navbar />
+      <Navbar homeHref="/" showQuizButton={false} registerHref="/#register" />
       <main className="section">
         <div className="container-narrow space-y-8">
           <QuizSnapshot result={result} shareUrl={shareUrl} />

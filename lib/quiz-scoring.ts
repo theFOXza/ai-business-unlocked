@@ -140,8 +140,8 @@ export const calculateQuizResult = (
 
   const estimatedHours = getEstimatedHours(combinedRaw);
   const estimatedMonthlyImpact = {
-    min: roundToNearest(estimatedHours.min * 25 * 4.3, 5),
-    max: roundToNearest(estimatedHours.max * 25 * 4.3, 5),
+    min: roundToNearest(estimatedHours.min * 50 * 4.3, 5),
+    max: roundToNearest(estimatedHours.max * 50 * 4.3, 5),
   };
 
   const communicationScore = rawQ3 + getOptionPoints(7, safeAnswers[7] as string);

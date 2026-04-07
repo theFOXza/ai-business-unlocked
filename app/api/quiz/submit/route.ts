@@ -169,6 +169,40 @@ export async function POST(request: Request): Promise<Response> {
       console.error('[quiz-submit] Lead notification exception:', notifyError);
     }
 
+    if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
+      try {
+        await fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            timestamp: new Date().toISOString(),
+            firstName: contact.firstName,
+            email: contact.email,
+            businessName: contact.businessName || '',
+            score: result.score,
+            maxScore: result.maxScore,
+            grade: result.gradeLabel,
+            estimatedHoursMin: result.estimatedHoursPerWeek.min,
+            estimatedHoursMax: result.estimatedHoursPerWeek.max,
+            estMonthlyImpactMin: result.estimatedMonthlyImpact.min,
+            estMonthlyImpactMax: result.estimatedMonthlyImpact.max,
+            topArea1: result.topAreas[0] || '',
+            topArea2: result.topAreas[1] || '',
+            topArea3: result.topAreas[2] || '',
+            businessType: result.businessType,
+            teamSize: result.teamSize,
+            aiFamiliarity: result.aiFamiliarity,
+            utmSource: utm?.utmSource || '',
+            utmCampaign: utm?.utmCampaign || '',
+            utmMedium: utm?.utmMedium || '',
+            snapshotUrl,
+          }),
+        });
+      } catch (err) {
+        console.error('[quiz-submit] Sheets webhook error:', err);
+      }
+    }
+
     return Response.json({ ok: true, id, token });
   } catch (error) {
     console.error('[quiz-submit]', error);
