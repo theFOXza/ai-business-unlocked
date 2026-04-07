@@ -64,7 +64,13 @@ export default function QuizIntro() {
             </div>
             <div className="flex items-center gap-4">
               <div className="h-14 w-14 overflow-hidden rounded-full border border-[var(--color-border)]">
-                <Image src="/james-headshot.png" alt="James Parris" width={56} height={56} />
+                <Image
+                  src="/james-headshot.png"
+                  alt="James Parris"
+                  width={56}
+                  height={56}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 22%' }}
+                />
               </div>
               <div>
                 <p className="text-sm font-semibold">James Parris</p>

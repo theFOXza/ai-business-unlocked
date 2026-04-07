@@ -8,7 +8,7 @@ import QuizUtmTracker from '@/components/quiz/QuizUtmTracker';
 export default function QuizLandingPage() {
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
-      <Navbar />
+      <Navbar homeHref="/" showQuizButton={false} registerHref="/#register" />
       <Suspense fallback={null}>
         <QuizUtmTracker />
       </Suspense>
