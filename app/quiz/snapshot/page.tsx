@@ -4,8 +4,9 @@ import path from 'path';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import QuizSnapshot from '@/components/quiz/QuizSnapshot';
-import type { QuizResult } from '@/lib/quiz-scoring';
+import type { QuizSubmission } from '@/lib/quiz-scoring';
 import { quizDisclaimer } from '@/lib/quiz-scoring';
+import { decodeQuizSnapshotToken } from '@/lib/quiz-snapshot-token';
 
 export const metadata = {
   robots: {
@@ -14,11 +15,11 @@ export const metadata = {
   },
 };
 
-const getResultById = async (id: string): Promise<QuizResult | null> => {
+const getResultById = async (id: string): Promise<QuizSubmission | null> => {
   try {
     const filePath = path.join(process.cwd(), 'data', 'quiz-results', `${id}.json`);
     const raw = await fs.readFile(filePath, 'utf-8');
-    const parsed = JSON.parse(raw) as QuizResult;
+    const parsed = JSON.parse(raw) as QuizSubmission;
     return parsed;
   } catch {
     return null;
@@ -28,11 +29,13 @@ const getResultById = async (id: string): Promise<QuizResult | null> => {
 export default async function QuizSnapshotPage({
   searchParams,
 }: {
-  searchParams: { id?: string };
+  searchParams: { id?: string; token?: string };
 }) {
   const id = searchParams?.id;
+  const token = searchParams?.token;
+  const tokenResult = token ? decodeQuizSnapshotToken(token) : null;
 
-  if (!id) {
+  if (!id && !tokenResult) {
     return (
       <div className="min-h-screen bg-[var(--color-bg)]">
         <Navbar />
@@ -52,7 +55,7 @@ export default async function QuizSnapshotPage({
     );
   }
 
-  const result = await getResultById(id);
+  const result = tokenResult ?? (id ? await getResultById(id) : null);
 
   if (!result) {
     return (
@@ -75,7 +78,9 @@ export default async function QuizSnapshotPage({
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.aibusinessunlock.com';
-  const shareUrl = `${siteUrl}/quiz/snapshot?id=${encodeURIComponent(id)}`;
+  const shareUrl = token
+    ? `${siteUrl}/quiz/snapshot?token=${encodeURIComponent(token)}`
+    : `${siteUrl}/quiz/snapshot?id=${encodeURIComponent(id!)}`;
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">

@@ -151,6 +151,11 @@ export default function QuizTakePage() {
     }
 
     const payload = await response.json();
+    if (payload?.token) {
+      window.location.href = `/quiz/snapshot?token=${encodeURIComponent(payload.token)}`;
+      return;
+    }
+
     if (payload?.id) {
       window.location.href = `/quiz/snapshot?id=${payload.id}`;
     }
@@ -158,7 +163,7 @@ export default function QuizTakePage() {
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
-      <Navbar />
+      <Navbar homeHref="/" showQuizButton={false} registerHref="/#register" />
       <main className="section">
         <div className="container-narrow space-y-6">
           {!showResults && (

@@ -1,10 +1,9 @@
-import { promises as fs } from 'fs';
-import path from 'path';
 import { z } from 'zod';
 import React from 'react';
 import { calculateQuizResult, type QuizSubmission } from '@/lib/quiz-scoring';
 import { getResend, fromEmail } from '@/lib/resend';
 import { QuizEmailTemplate, type QuizEmailTemplateProps } from '@/lib/quiz-email-template';
+import { encodeQuizSnapshotToken } from '@/lib/quiz-snapshot-token';
 
 const submissionSchema = z.object({
   answers: z.record(z.union([z.string(), z.array(z.string())])),
@@ -33,12 +32,6 @@ const normalizeAnswers = (answers: Record<string, string | string[]>): Record<nu
   return normalized;
 };
 
-const ensureDataDir = async () => {
-  const dir = path.join(process.cwd(), 'data', 'quiz-results');
-  await fs.mkdir(dir, { recursive: true });
-  return dir;
-};
-
 export async function POST(request: Request): Promise<Response> {
   try {
     const body = await request.json();
@@ -63,12 +56,10 @@ export async function POST(request: Request): Promise<Response> {
       createdAt: new Date().toISOString(),
     };
 
-    const dir = await ensureDataDir();
-    const filePath = path.join(dir, `${id}.json`);
-    await fs.writeFile(filePath, JSON.stringify(submission, null, 2), 'utf-8');
+    const token = encodeQuizSnapshotToken(submission);
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.aibusinessunlock.com';
-    const snapshotUrl = `${siteUrl}/quiz/snapshot?id=${id}`;
+    const snapshotUrl = `${siteUrl}/quiz/snapshot?token=${encodeURIComponent(token)}`;
 
     const { error } = await getResend().emails.send({
       from: fromEmail,
@@ -82,7 +73,7 @@ export async function POST(request: Request): Promise<Response> {
       return Response.json({ ok: false, error: 'Email failed to send' }, { status: 500 });
     }
 
-    return Response.json({ ok: true, id });
+    return Response.json({ ok: true, id, token });
   } catch (error) {
     console.error('[quiz-submit]', error);
     return Response.json({ ok: false, error: 'Internal error' }, { status: 500 });
