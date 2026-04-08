@@ -19,9 +19,23 @@ export const metadata: Metadata = {
     description:
       'Stop guessing. Start using AI to grow your business. Join 20 local business owners for a hands-on workshop.',
     type: 'website',
+    url: 'https://www.aibusinessunlock.com',
+    siteName: 'AI for Business Unlocked',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'AI for Business Unlocked — One-day workshop, April 25, 2026, Gainesville FL',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
+    title: 'AI for Business Unlocked — April 25, 2026 · Gainesville, FL',
+    description:
+      'Stop guessing. Start using AI to grow your business. Join 20 local business owners for a hands-on workshop.',
+    images: ['/og-image.jpg'],
   },
 };
 
