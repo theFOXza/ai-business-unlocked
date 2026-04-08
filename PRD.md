@@ -195,7 +195,7 @@ HEADLINE: "Your Day, Hour by Hour"
 2:15 PM   ☕ Break
 2:30 PM   🎯 Module 4: 1-on-1 Implementation for YOUR Business
 3:30 PM   🚀 Community Launch + Your 7-Day AI Challenge
-4:00 PM   🎬 Closing + Group Photo
+4:30 PM   🎬 Closing + Group Photo
 
 "Every session is hands-on. You'll have something working before lunch."
 ```

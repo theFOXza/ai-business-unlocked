@@ -3,8 +3,12 @@ import Stripe from 'stripe';
 import { getStripe } from '@/lib/stripe';
 import { getResend, fromEmail, notifyEmails } from '@/lib/resend';
 import { confirmationEmail, notificationEmail, type RegistrationData } from '@/lib/emails';
+import { createRegistration, markSent } from '@/lib/registrations-api';
 
 export const dynamic = 'force-dynamic';
+
+const DEFAULT_EVENT_DATE = '2026-04-25';
+const SUPPORT_EMAIL = 'support@aibusinessunlock.com';
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
@@ -19,7 +23,6 @@ export async function POST(req: NextRequest) {
       const stripe = getStripe();
       event = stripe.webhooks.constructEvent(body, sig, webhookSecret);
     } else {
-      // Fallback: parse without signature verification (for initial testing)
       event = JSON.parse(body) as Stripe.Event;
       console.warn('⚠️ Webhook signature not verified — STRIPE_WEBHOOK_SECRET not set');
     }
@@ -42,6 +45,7 @@ export async function POST(req: NextRequest) {
       painPoint: metadata.painPoint,
       aiFamiliarity: metadata.aiFamiliarity,
       amount: session.amount_total || undefined,
+      eventDate: 'Saturday, April 25, 2026',
     };
 
     if (!data.email) {
@@ -49,35 +53,64 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ received: true, warning: 'no email' });
     }
 
-    try {
-      const resend = getResend();
+    const resend = getResend();
+    let registrationId: string | undefined;
 
-      // 1. Send confirmation email to attendee
+    try {
       const confirmation = confirmationEmail(data);
       await resend.emails.send({
         from: fromEmail,
         to: data.email,
         subject: confirmation.subject,
         html: confirmation.html,
-        replyTo: 'foxinnovationsllc@gmail.com',
+        replyTo: SUPPORT_EMAIL,
       });
       console.log(`✅ Confirmation email sent to ${data.email}`);
 
-      // 2. Send notification to PJ + James
-      if (notifyEmails.length > 0) {
+      try {
+        const registration = await createRegistration({
+          stripe_session_id: session.id,
+          stripe_customer_id:
+            typeof session.customer === 'string' ? session.customer : session.customer?.id || null,
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          business_name: data.businessName,
+          industry: data.industry,
+          pain_point: data.painPoint,
+          ai_familiarity: data.aiFamiliarity,
+          amount_cents: data.amount,
+          currency: session.currency || undefined,
+          event_date: metadata.eventDate || DEFAULT_EVENT_DATE,
+          metadata,
+        });
+        registrationId = registration.id;
+        await markSent(registration.id, 'confirmation');
+        console.log(`✅ Registration persisted for ${data.email}`);
+      } catch (registrationErr) {
+        console.error('Registration persistence error:', registrationErr);
+      }
+    } catch (emailErr) {
+      console.error('Confirmation email send error:', emailErr);
+    }
+
+    if (notifyEmails.length > 0) {
+      try {
         const notification = notificationEmail(data);
         await resend.emails.send({
           from: fromEmail,
           to: notifyEmails,
           subject: notification.subject,
           html: notification.html,
+          replyTo: SUPPORT_EMAIL,
         });
         console.log(`✅ Notification sent to ${notifyEmails.join(', ')}`);
+      } catch (notificationErr) {
+        console.error('Notification email send error:', notificationErr);
       }
-    } catch (emailErr) {
-      console.error('Email send error:', emailErr);
-      // Don't fail the webhook — payment already succeeded
     }
+
+    return NextResponse.json({ received: true, registrationId });
   }
 
   return NextResponse.json({ received: true });

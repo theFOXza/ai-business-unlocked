@@ -44,7 +44,7 @@ const scheduleItems = [
     type: 'Workshop',
     variant: 'module',
   },
-  { time: '4:00 PM', title: 'Closing + Group Photo' },
+  { time: '4:30 PM', title: 'Closing + Group Photo' },
 ];
 
 export default function Agenda() {
