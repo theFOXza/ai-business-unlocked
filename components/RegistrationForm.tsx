@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { getStoredUtmParams, pushToDataLayer } from '@/lib/analytics';
 import { ticketPrice } from '@/lib/site';
 
 const formSchema = z.object({
@@ -31,10 +32,21 @@ export default function RegistrationForm() {
     setIsSubmitting(true);
     setError(null);
     try {
+      const utm = getStoredUtmParams();
+
+      pushToDataLayer('begin_checkout', {
+        value: ticketPrice,
+        currency: 'USD',
+        plan: ticketPrice === 197 ? 'early_bird' : 'regular',
+      });
+
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          ...values,
+          ...utm,
+        }),
       });
 
       const data = await response.json();

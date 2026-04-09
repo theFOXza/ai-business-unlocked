@@ -34,6 +34,7 @@ export interface QuizSubmission extends QuizResult {
   utmSource?: string;
   utmCampaign?: string;
   utmMedium?: string;
+  utmContent?: string;
   createdAt: string;
 }
 

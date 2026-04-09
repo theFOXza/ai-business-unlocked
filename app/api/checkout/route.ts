@@ -15,6 +15,10 @@ export async function POST(req: NextRequest) {
       industry,
       painPoint,
       aiFamiliarity,
+      utmSource,
+      utmMedium,
+      utmCampaign,
+      utmContent,
     } = body;
 
     if (!email) {
@@ -39,11 +43,16 @@ export async function POST(req: NextRequest) {
       line_items: [{ price: priceId, quantity: 1 }],
       metadata: {
         name,
+        email,
         phone,
         businessName,
         industry,
         painPoint,
         aiFamiliarity,
+        utmSource,
+        utmMedium,
+        utmCampaign,
+        utmContent,
       },
       success_url: `${req.nextUrl.origin}/thank-you?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.nextUrl.origin}/#register`,

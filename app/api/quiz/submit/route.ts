@@ -17,6 +17,7 @@ const submissionSchema = z.object({
       utmSource: z.string().optional(),
       utmCampaign: z.string().optional(),
       utmMedium: z.string().optional(),
+      utmContent: z.string().optional(),
     })
     .optional(),
 });
@@ -65,7 +66,7 @@ const renderLeadNotificationHtml = ({
   contact: { firstName: string; email: string; businessName?: string };
   result: QuizResult;
   snapshotUrl: string;
-  utm?: { utmSource?: string; utmCampaign?: string; utmMedium?: string };
+  utm?: { utmSource?: string; utmCampaign?: string; utmMedium?: string; utmContent?: string };
 }): string => {
   const topAreas = [...result.opportunityAreas].sort((a, b) => b.score - a.score).slice(0, 3);
 
@@ -83,6 +84,7 @@ const renderLeadNotificationHtml = ({
         <tr><td style="padding:8px 0;font-weight:bold;">UTM source</td><td style="padding:8px 0;">${escapeHtml(utm?.utmSource)}</td></tr>
         <tr><td style="padding:8px 0;font-weight:bold;">UTM campaign</td><td style="padding:8px 0;">${escapeHtml(utm?.utmCampaign)}</td></tr>
         <tr><td style="padding:8px 0;font-weight:bold;">UTM medium</td><td style="padding:8px 0;">${escapeHtml(utm?.utmMedium)}</td></tr>
+        <tr><td style="padding:8px 0;font-weight:bold;">UTM content</td><td style="padding:8px 0;">${escapeHtml(utm?.utmContent)}</td></tr>
         <tr><td style="padding:8px 0;font-weight:bold;">Score</td><td style="padding:8px 0;">${result.score}/${result.maxScore}</td></tr>
         <tr><td style="padding:8px 0;font-weight:bold;">Grade</td><td style="padding:8px 0;">${escapeHtml(result.gradeLabel)}</td></tr>
         <tr><td style="padding:8px 0;font-weight:bold;">Estimated hours/week</td><td style="padding:8px 0;">${result.estimatedHoursPerWeek.min}-${result.estimatedHoursPerWeek.max}${result.estimatedHoursPerWeek.max === 25 ? '+' : ''}</td></tr>
@@ -127,6 +129,7 @@ export async function POST(request: Request): Promise<Response> {
       utmSource: utm?.utmSource || undefined,
       utmCampaign: utm?.utmCampaign || undefined,
       utmMedium: utm?.utmMedium || undefined,
+      utmContent: utm?.utmContent || undefined,
       createdAt: new Date().toISOString(),
     };
 
@@ -195,6 +198,7 @@ export async function POST(request: Request): Promise<Response> {
             utmSource: utm?.utmSource || '',
             utmCampaign: utm?.utmCampaign || '',
             utmMedium: utm?.utmMedium || '',
+            utmContent: utm?.utmContent || '',
             snapshotUrl,
           }),
         });

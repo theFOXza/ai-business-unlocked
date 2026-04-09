@@ -7,6 +7,7 @@ import QuizProgress from '@/components/quiz/QuizProgress';
 import QuizQuestion from '@/components/quiz/QuizQuestion';
 import QuizResults from '@/components/quiz/QuizResults';
 import QuizEmailGate, { type QuizEmailFormValues } from '@/components/quiz/QuizEmailGate';
+import { getStoredUtmParams, pushToDataLayer } from '@/lib/analytics';
 import { quizQuestions, quizQuestionCount } from '@/lib/quiz-questions';
 import { calculateQuizResult, quizDisclaimer } from '@/lib/quiz-scoring';
 
@@ -32,17 +33,6 @@ const getStoredIndex = (): number => {
   return Number.isNaN(parsed) ? 0 : parsed;
 };
 
-const getStoredUtm = (): { utmSource?: string; utmCampaign?: string; utmMedium?: string } => {
-  if (typeof window === 'undefined') return {};
-  const stored = sessionStorage.getItem('quiz-utm');
-  if (!stored) return {};
-  try {
-    return JSON.parse(stored);
-  } catch {
-    return {};
-  }
-};
-
 export default function QuizTakePage() {
   const [answers, setAnswers] = useState<Record<number, string | string[]>>({});
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -61,6 +51,10 @@ export default function QuizTakePage() {
     if (allAnswered) {
       setShowResults(true);
     }
+  }, []);
+
+  useEffect(() => {
+    pushToDataLayer('quiz_start');
   }, []);
 
   useEffect(() => {
@@ -134,7 +128,7 @@ export default function QuizTakePage() {
 
   const handleEmailSubmit = async (values: QuizEmailFormValues) => {
     if (!result) throw new Error('Missing result');
-    const utm = getStoredUtm();
+    const utm = getStoredUtmParams();
 
     const response = await fetch('/api/quiz/submit', {
       method: 'POST',
@@ -151,6 +145,13 @@ export default function QuizTakePage() {
     }
 
     const payload = await response.json();
+    if (payload?.ok) {
+      pushToDataLayer('quiz_submit', {
+        score: result.score,
+        grade: result.grade,
+      });
+    }
+
     if (payload?.token) {
       window.location.href = `/quiz/snapshot?token=${encodeURIComponent(payload.token)}`;
       return;

@@ -1,10 +1,44 @@
+import PurchaseTracking from '@/components/PurchaseTracking';
+import { getStripe } from '@/lib/stripe';
 import Link from 'next/link';
 import { contactEmail } from '@/lib/site';
 
-export default function ThankYouPage() {
+type ThankYouPageProps = {
+  searchParams?: Promise<{ session_id?: string }>;
+};
+
+export default async function ThankYouPage({ searchParams }: ThankYouPageProps) {
+  const params = (await searchParams) || {};
+  const sessionId = params.session_id;
+
+  let purchaseValue = 197;
+  let purchaseCurrency = 'USD';
+
+  if (sessionId) {
+    try {
+      const stripe = getStripe();
+      const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+      if (typeof session.amount_total === 'number') {
+        purchaseValue = session.amount_total / 100;
+      }
+
+      if (session.currency) {
+        purchaseCurrency = session.currency.toUpperCase();
+      }
+    } catch (error) {
+      console.error('[thank-you] Failed to retrieve checkout session', error);
+    }
+  }
+
   return (
     <div className="section">
       <div className="container container-narrow">
+        <PurchaseTracking
+          value={purchaseValue}
+          currency={purchaseCurrency}
+          transactionId={sessionId}
+        />
         <div className="section-label">You&apos;re In</div>
         <h1 className="section-title">🎉 You&apos;re In! See You April 25th.</h1>
         <p className="section-desc">Here&apos;s what happens next:</p>
