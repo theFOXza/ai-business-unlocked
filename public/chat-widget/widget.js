@@ -146,7 +146,7 @@
     if (isOpen && !greeted) {
       greeted = true;
       appendBot(
-        "Hi there! 👋 I'm here to help with any questions about the **AI for Business Unlocked** workshop on April 25th in Gainesville, FL.\n\nWhat would you like to know?"
+        "Hi there! 👋 I'm here to help with any questions about the **AI for Business Unlocked** workshop on May 16th in Gainesville, FL.\n\nWhat would you like to know?"
       );
     }
     if (isOpen) {

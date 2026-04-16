@@ -12,7 +12,7 @@ export interface RegistrationData {
   eventDate?: string;
 }
 
-const DEFAULT_EVENT_DATE = 'Saturday, April 25, 2026';
+const DEFAULT_EVENT_DATE = 'Saturday, May 16, 2026';
 const DEFAULT_EVENT_TIME = '8:30 AM – 4:30 PM';
 const DEFAULT_VENUE = 'Best Western Gateway Grand, Gainesville, FL';
 const SUPPORT_EMAIL = 'support@aibusinessunlock.com';
@@ -108,9 +108,9 @@ export function confirmationEmail(data: RegistrationData): { subject: string; ht
   const eventDate = data.eventDate || DEFAULT_EVENT_DATE;
 
   return {
-    subject: `🎉 You're in, ${firstName}! See you April 25th`,
+    subject: `🎉 You're in, ${firstName}! See you May 16th`,
     html: renderWorkshopEmail({
-      eyebrow: 'AI for Business Unlocked — April 25, 2026',
+      eyebrow: 'AI for Business Unlocked — May 16, 2026',
       title: "🎉 You're In!",
       intro: `
         <p>Hey ${escapeHtml(firstName)}! 👋</p>
@@ -128,7 +128,7 @@ export function confirmationEmail(data: RegistrationData): { subject: string; ht
       `,
       sections: `
         <h2>What Happens Next</h2>
-        <p><strong>1 week before (April 18)</strong> — You'll get a prep email with setup instructions and a quick exercise to get the most out of the day.</p>
+        <p><strong>1 week before (May 9)</strong> — You'll get a prep email with setup instructions and a quick exercise to get the most out of the day.</p>
         <p><strong>Day of</strong> — Arrive at 8:30 AM for registration and coffee. We start building at 9:00 AM sharp.</p>
         ${renderSupportLine()}
       `,

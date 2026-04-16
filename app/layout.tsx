@@ -4,9 +4,9 @@ import TrackingBootstrap from '@/components/TrackingBootstrap';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'AI for Business Unlocked — April 25, 2026 · Gainesville, FL',
+  title: 'AI for Business Unlocked — May 16, 2026 · Gainesville, FL',
   description:
-    'A one-day hands-on workshop where local business owners build real AI tools for their business. April 25, 2026 · Best Western Gateway Grand, Gainesville, FL. Only 25 seats.',
+    'A one-day hands-on workshop where local business owners build real AI tools for their business. May 16, 2026 · Best Western Gateway Grand, Gainesville, FL. Only 25 seats.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   openGraph: {
-    title: 'AI for Business Unlocked — April 25, 2026 · Gainesville, FL',
+    title: 'AI for Business Unlocked — May 16, 2026 · Gainesville, FL',
     description:
       'Stop guessing. Start using AI to grow your business. Join 20 local business owners for a hands-on workshop.',
     type: 'website',
@@ -27,13 +27,13 @@ export const metadata: Metadata = {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'AI for Business Unlocked — One-day workshop, April 25, 2026, Gainesville FL',
+        alt: 'AI for Business Unlocked — One-day workshop, May 16, 2026, Gainesville FL',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AI for Business Unlocked — April 25, 2026 · Gainesville, FL',
+    title: 'AI for Business Unlocked — May 16, 2026 · Gainesville, FL',
     description:
       'Stop guessing. Start using AI to grow your business. Join 20 local business owners for a hands-on workshop.',
     images: ['/og-image.jpg'],

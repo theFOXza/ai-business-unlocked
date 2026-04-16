@@ -30,7 +30,7 @@ const SYSTEM_PROMPT = `You are a friendly, helpful assistant for the "AI for Bus
 
 === WORKSHOP DETAILS ===
 Name: AI for Business Unlocked
-Date: Saturday, April 25, 2026
+Date: Saturday, May 16, 2026
 Time: Doors open 8:30 AM | Sessions 9:00 AM – 4:30 PM
 Location: Best Western Gateway Grand, Gainesville, FL
 Capacity: Limited to 25 seats total

@@ -6,7 +6,7 @@ export default function FinalCTA() {
     <section className="section final-cta">
       <div className="container" style={{ textAlign: 'center' }}>
         <h2 className="section-title" style={{ maxWidth: '18ch', margin: '0 auto var(--space-6)' }}>
-          April 25, 2026 · Gainesville, FL
+May 16, 2026 · Gainesville, FL
         </h2>
         <p className="section-desc" style={{ margin: '0 auto var(--space-8)' }}>
           One day. Real tools. Your business, smarter.

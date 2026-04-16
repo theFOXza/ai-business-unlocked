@@ -7,7 +7,7 @@ import { createRegistration, markSent } from '@/lib/registrations-api';
 
 export const dynamic = 'force-dynamic';
 
-const DEFAULT_EVENT_DATE = '2026-04-25';
+const DEFAULT_EVENT_DATE = '2026-05-16';
 const SUPPORT_EMAIL = 'support@aibusinessunlock.com';
 
 export async function POST(req: NextRequest) {
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
       painPoint: metadata.painPoint,
       aiFamiliarity: metadata.aiFamiliarity,
       amount: session.amount_total || undefined,
-      eventDate: 'Saturday, April 25, 2026',
+      eventDate: 'Saturday, May 16, 2026',
     };
 
     if (!data.email) {

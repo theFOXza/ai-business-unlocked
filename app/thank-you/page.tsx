@@ -40,7 +40,7 @@ export default async function ThankYouPage({ searchParams }: ThankYouPageProps) 
           transactionId={sessionId}
         />
         <div className="section-label">You&apos;re In</div>
-        <h1 className="section-title">🎉 You&apos;re In! See You April 25th.</h1>
+        <h1 className="section-title">🎉 You&apos;re In! See You May 16th.</h1>
         <p className="section-desc">Here&apos;s what happens next:</p>
         <div className="value-stack" style={{ marginBottom: 'var(--space-8)' }}>
           <div className="value-row">
@@ -48,7 +48,7 @@ export default async function ThankYouPage({ searchParams }: ThankYouPageProps) 
           </div>
           <div className="value-row">
             <span className="value-item-name">
-              2. 📧 You&apos;ll receive a pre-workshop setup guide 1 week before (April 18)
+              2. 📧 You&apos;ll receive a pre-workshop setup guide 1 week before (May 9)
             </span>
           </div>
           <div className="value-row">
